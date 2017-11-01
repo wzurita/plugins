@@ -1,6 +1,4 @@
-FROM openjdk:8-jre
-
-MAINTAINER Reinhard Pointner <rednoah@filebot.net>
+FROM arm32v7/openjdk:jre-slim
 
 ENV FILEBOT_VERSION 4.7.9
 

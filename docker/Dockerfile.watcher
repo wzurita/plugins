@@ -1,7 +1,7 @@
-FROM rednoah/filebot
-
-MAINTAINER Reinhard Pointner <rednoah@filebot.net>
+FROM wzurita/filebot
 
 COPY filebot-watcher /usr/bin/filebot-watcher
+
+VOLUME ["/watch", "/output"]
 
 ENTRYPOINT ["/usr/bin/filebot-watcher"]
