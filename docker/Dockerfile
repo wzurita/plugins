@@ -1,4 +1,4 @@
-FROM arm32v7/openjdk:jre-slim
+FROM arm32v7/openjdk:jre
 
 ENV FILEBOT_VERSION 4.7.9
 ENV FILEBOT_PACKAGE filebot_${FILEBOT_VERSION}-portable.tar.xz
