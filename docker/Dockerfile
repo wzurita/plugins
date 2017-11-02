@@ -1,15 +1,10 @@
 FROM arm32v7/openjdk:jre-slim
 
 ENV FILEBOT_VERSION 4.7.9
-
+ENV FILEBOT_PACKAGE filebot_${FILEBOT_VERSION}-portable.tar.xz
 
 WORKDIR /usr/share/filebot
 
-RUN FILEBOT_SHA256=892723dcec8fe5385ec6665db9960e7c1a88e459a60525c02afb7f1195a50523 \
- && FILEBOT_PACKAGE=filebot_${FILEBOT_VERSION}-portable.tar.xz \
- && curl -L -O https://downloads.sourceforge.net/project/filebot/filebot/FileBot_$FILEBOT_VERSION/$FILEBOT_PACKAGE \
- && tar zxf $FILEBOT_PACKAGE \
- && rm $FILEBOT_PACKAGE
 
 RUN apt-get update && apt-get install -y \
     mediainfo \
@@ -19,6 +14,10 @@ RUN apt-get update && apt-get install -y \
     inotify-tools \
  && rm -rf /var/lib/apt/lists/*
 
+
+RUN curl -L -O https://downloads.sourceforge.net/project/filebot/filebot/FileBot_$FILEBOT_VERSION/$FILEBOT_PACKAGE
+RUN tar zxf $FILEBOT_PACKAGE 
+RUN rm $FILEBOT_PACKAGE
 
 ENV DOCKER_DATA /data
 ENV DOCKER_VOLUME /volume1
