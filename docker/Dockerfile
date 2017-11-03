@@ -4,11 +4,11 @@ ENV FILEBOT_VERSION 4.7.9
 ENV FILEBOT_PACKAGE filebot_${FILEBOT_VERSION}-portable.tar.xz
 
 WORKDIR /usr/share/filebot
-RUN curl -L -O https://downloads.sourceforge.net/project/filebot/filebot/FileBot_${FILEBOT_VERSION}/FileBot_${FILEBOT_VERSION}-portable.tar.xz
+
 RUN apt-get update 
 RUN apt-get install -y mediainfo libchromaprint-tools file curl inotify-tools 
 RUN rm -rf /var/lib/apt/lists/*
-RUN curl -L -O https://downloads.sourceforge.net/project/filebot/filebot/FileBot_$FILEBOT_VERSION/$FILEBOT_PACKAGE
+RUN curl -L -O https://downloads.sourceforge.net/project/filebot/filebot/FileBot_${FILEBOT_VERSION}/FileBot_${FILEBOT_VERSION}-portable.tar.xz
 RUN tar xf $FILEBOT_PACKAGE 
 RUN rm $FILEBOT_PACKAGE
 
@@ -24,4 +24,4 @@ WORKDIR $DOCKER_DATA
 
 VOLUME ["$DOCKER_DATA", "$DOCKER_VOLUME"]
 
-ENTRYPOINT ["filebot"]
+ENTRYPOINT ["/usr/share/filebot/filebot.sh"]
