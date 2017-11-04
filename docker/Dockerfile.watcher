@@ -1,4 +1,4 @@
-FROM wzurita/filebot
+FROM filebot
 
 COPY filebot-watcher /usr/bin/filebot-watcher
 

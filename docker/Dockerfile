@@ -1,15 +1,14 @@
 FROM arm32v7/openjdk:jre-slim
 
 ENV FILEBOT_VERSION 4.7.9
-ENV FILEBOT_PACKAGE filebot_${FILEBOT_VERSION}-portable.tar.xz
+ENV FILEBOT_PACKAGE FileBot_${FILEBOT_VERSION}-portable.tar.xz
 
 WORKDIR /usr/share/filebot
 
-RUN apt-get update && apt-get install -y mediainfo libchromaprint-tools file curl inotify-tools \
-&& rm -rf /var/lib/apt/lists/* \
-&& curl -L -O https://downloads.sourceforge.net/project/filebot/filebot/FileBot_${FILEBOT_VERSION}/FileBot_${FILEBOT_VERSION}-portable.tar.xz \
-&& tar xf $FILEBOT_PACKAGE \
-&& rm $FILEBOT_PACKAGE 
+RUN apt-get update && apt-get install -y mediainfo libchromaprint-tools file curl inotify-tools 
+RUN rm -rf /var/lib/apt/lists/*
+RUN curl -L -O https://downloads.sourceforge.net/project/filebot/filebot/FileBot_${FILEBOT_VERSION}/${FILEBOT_PACKAGE}
+RUN tar xf $FILEBOT_PACKAGE && rm $FILEBOT_PACKAGE 
 
 ENV DOCKER_DATA /data
 ENV DOCKER_VOLUME /volume1
